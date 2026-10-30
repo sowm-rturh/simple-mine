@@ -1,0 +1,555 @@
+/* ==========================================================================
+   MAIN.CSS — Core Layout, Cinematic Intro, Music Player & Lightbox
+   ========================================================================== */
+
+/* ─── Scroll Progress Bar ─────────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--wine-red), var(--rose-pink), var(--gold));
+  box-shadow: 0 0 10px var(--rose-glow), 0 0 16px var(--gold-glow);
+  z-index: 1000;
+  transition: width 0.15s ease-out;
+}
+
+/* ─── Floating Music Player ────────────────────────────────────────── */
+#music-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+}
+
+.music-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: var(--bg-surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-gold);
+  border-radius: 50px;
+  color: var(--text-gold);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+  transition: var(--transition-smooth);
+}
+
+.music-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: var(--gold);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 22px rgba(212, 175, 55, 0.4);
+}
+
+.music-icon {
+  font-size: 1rem;
+  color: var(--rose-pink);
+  animation: pulse-soft 2s infinite ease-in-out;
+}
+
+/* Equalizer Bars */
+.sound-equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.sound-equalizer span {
+  width: 2.5px;
+  height: 4px;
+  background-color: var(--gold);
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+
+.music-playing .sound-equalizer span:nth-child(1) {
+  animation: eq-bounce 1s infinite ease-in-out 0.1s;
+}
+.music-playing .sound-equalizer span:nth-child(2) {
+  animation: eq-bounce 1s infinite ease-in-out 0.3s;
+}
+.music-playing .sound-equalizer span:nth-child(3) {
+  animation: eq-bounce 1s infinite ease-in-out 0.2s;
+}
+.music-playing .sound-equalizer span:nth-child(4) {
+  animation: eq-bounce 1s infinite ease-in-out 0.4s;
+}
+
+@keyframes eq-bounce {
+  0%, 100% { height: 4px; }
+  50% { height: 14px; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.18); opacity: 1; }
+}
+
+/* ─── Cinematic Intro ──────────────────────────────────────────────── */
+#cinematic-intro {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #040103;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1.4s cubic-bezier(0.77, 0, 0.175, 1), transform 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+  overflow: hidden;
+}
+
+#cinematic-intro.intro-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-80px) scale(1.03);
+}
+
+.intro-slideshow-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.intro-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1), transform 7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.intro-slide.slide-active {
+  opacity: 0.42;
+  transform: scale(1.02);
+}
+
+.intro-slide.slide-active.zoom-effect {
+  transform: scale(1.14);
+}
+
+/* Dark Vignette Overlay on Slideshow */
+.intro-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(6, 2, 5, 0.3) 0%, rgba(6, 2, 5, 0.75) 60%, rgba(4, 1, 3, 0.96) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 3;
+  max-width: 820px;
+  padding: 0 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.intro-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose-pink);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.6s ease, transform 1.6s ease;
+}
+
+.intro-quote-1,
+.intro-quote-2 {
+  font-family: var(--font-romantic);
+  font-style: italic;
+  font-size: clamp(1.45rem, 4.2vw, 2.35rem);
+  font-weight: 300;
+  line-height: 1.42;
+  color: var(--text-primary);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 20px var(--rose-glow);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+}
+
+.intro-quote-2 {
+  color: var(--text-gold);
+}
+
+.enter-story-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 36px;
+  margin-top: 14px;
+  background: linear-gradient(135deg, rgba(74, 13, 30, 0.85), rgba(122, 21, 46, 0.85));
+  border: 1px solid var(--border-gold);
+  border-radius: 50px;
+  color: var(--text-primary);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 25px var(--wine-glow), 0 0 15px var(--gold-glow);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-story-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(242, 220, 155, 0.28), transparent);
+  transition: left 0.8s ease;
+}
+
+.enter-story-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 35px var(--wine-glow), 0 0 25px var(--gold-glow);
+}
+
+.enter-story-btn:hover::before {
+  left: 100%;
+}
+
+.enter-story-btn .btn-heart {
+  color: var(--rose-pink);
+  font-size: 1.15rem;
+  transition: transform 0.3s ease;
+}
+
+.enter-story-btn:hover .btn-heart {
+  transform: scale(1.25);
+}
+
+/* ─── Main Content & Chapter Framework ─────────────────────────────── */
+#main-story {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 100px;
+}
+
+.chapter-section {
+  position: relative;
+  margin-bottom: 140px;
+  padding-top: 40px;
+}
+
+.chapter-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 50px;
+}
+
+.chapter-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  padding: 4px 14px;
+  border: 1px solid var(--border-gold);
+  border-radius: 30px;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, #ffffff 30%, var(--rose-pink) 70%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chapter-description {
+  font-family: var(--font-romantic);
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ─── Scroll-Triggered Animation Helpers ────────────────────────────── */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── Final Chapter: Forever Starts Here ───────────────────────────── */
+#final-chapter {
+  text-align: center;
+  position: relative;
+  padding: 80px 20px 140px;
+  margin-bottom: 40px;
+}
+
+.final-hero-wrapper {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto 50px;
+  border-radius: 18px;
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(74, 13, 30, 0.45), rgba(212, 175, 55, 0.15));
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px var(--wine-glow), 0 0 20px var(--gold-glow);
+}
+
+.final-hero-img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 4 / 5;
+  cursor: pointer;
+}
+
+.final-hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.final-hero-img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+.final-hero-glow-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: 18px;
+  pointer-events: none;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.final-message-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.final-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.final-tagline {
+  font-family: var(--font-romantic);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.8vw, 1.85rem);
+  color: var(--rose-pink);
+  margin-bottom: 36px;
+}
+
+.final-heart-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.final-heart-divider::before,
+.final-heart-divider::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.final-heart-divider span {
+  color: var(--wine-red);
+  font-size: 1.4rem;
+  filter: drop-shadow(0 0 10px var(--rose-glow));
+}
+
+.final-closing-note {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ─── Lightbox Modal ───────────────────────────────────────────────── */
+#photo-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 1, 3, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 20px;
+}
+
+#photo-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.lightbox-close-btn:hover {
+  background: var(--wine-red);
+  transform: rotate(90deg);
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(28, 10, 20, 0.7);
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: var(--text-gold);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  z-index: 10;
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--burgundy);
+  border-color: var(--gold);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev-btn { left: 24px; }
+.lightbox-next-btn { right: 24px; }
+
+.lightbox-content-box {
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-image-wrap {
+  max-width: 100%;
+  max-height: 72vh;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(122, 21, 46, 0.35);
+  border: 1px solid var(--border-subtle);
+}
+
+.lightbox-image-wrap img {
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-caption-text {
+  margin-top: 18px;
+  font-family: var(--font-romantic);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text-gold);
+  text-align: center;
+  max-width: 700px;
+}
+
+/* Mobile responsive lightbox buttons */
+@media (max-width: 768px) {
+  .lightbox-nav-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+  .lightbox-prev-btn { left: 10px; }
+  .lightbox-next-btn { right: 10px; }
+  .lightbox-close-btn { top: 14px; right: 14px; width: 38px; height: 38px; }
+  #music-widget { bottom: 16px; right: 16px; }
+  .music-toggle-btn { padding: 8px 14px; font-size: 0.75rem; }
+}

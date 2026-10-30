@@ -1,0 +1,425 @@
+/* ==========================================================================
+   SCRAPBOOK.CSS — Scrapbook Layouts, Polaroids, Washi Tape & Cards
+   ========================================================================== */
+
+/* ─── Chapter 1: His World (Cinematic Grid) ────────────────────────── */
+.his-world-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.his-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-wine);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.his-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: var(--gold);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px var(--wine-glow), 0 0 15px var(--gold-glow);
+}
+
+.his-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.his-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.his-card:hover .his-card-media img {
+  transform: scale(1.07);
+}
+
+.his-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 3, 6, 0.95) 0%, rgba(7, 3, 6, 0.3) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  transition: background 0.4s ease;
+}
+
+.his-card-stage {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.his-card-caption {
+  font-family: var(--font-romantic);
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+/* Feature card in His World */
+.his-card.featured-portrait {
+  grid-column: span 2;
+  aspect-ratio: auto;
+}
+
+@media (max-width: 768px) {
+  .his-card.featured-portrait {
+    grid-column: span 1;
+  }
+}
+
+/* ─── Chapter 2: The Beginning (Romantic Story Flow) ───────────────── */
+.beginning-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.beginning-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.beginning-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.beginning-media {
+  flex: 1;
+  position: relative;
+}
+
+.beginning-text {
+  flex: 1;
+  padding: 10px 20px;
+}
+
+.beginning-time {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose-pink);
+  margin-bottom: 10px;
+}
+
+.beginning-heading {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  color: var(--text-gold);
+  margin-bottom: 14px;
+}
+
+.beginning-para {
+  font-family: var(--font-romantic);
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ─── Polaroid & Scrapbook Elements ────────────────────────────────── */
+.polaroid-card {
+  position: relative;
+  background: #fdfaf7;
+  padding: 12px 12px 34px 12px;
+  border-radius: 4px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.75), 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.polaroid-card:hover {
+  transform: translateY(-8px) rotate(0deg) scale(1.03) !important;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.85), 0 0 25px var(--rose-glow);
+  z-index: 10;
+}
+
+.polaroid-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #11070c;
+  border-radius: 2px;
+}
+
+.polaroid-img-wrap.portrait-aspect {
+  aspect-ratio: 4 / 5;
+}
+
+.polaroid-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-caption {
+  margin-top: 14px;
+  font-family: var(--font-script);
+  font-size: 1.45rem;
+  color: #24141d;
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* Washi Tape Accent */
+.washi-tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 100px;
+  height: 28px;
+  background: rgba(255, 235, 240, 0.65);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  backdrop-filter: blur(2px);
+  clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
+}
+
+.washi-tape.gold-tape {
+  background: rgba(212, 175, 55, 0.45);
+}
+
+.washi-tape.wine-tape {
+  background: rgba(122, 21, 46, 0.45);
+}
+
+/* Scrapbook Pin / Heart Sticker */
+.scrapbook-sticker {
+  position: absolute;
+  top: -10px;
+  right: -8px;
+  font-size: 1.5rem;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Tilts */
+.tilt-left { transform: rotate(-2.8deg); }
+.tilt-right { transform: rotate(2.6deg); }
+.tilt-slight-left { transform: rotate(-1.4deg); }
+.tilt-slight-right { transform: rotate(1.5deg); }
+
+/* ─── Chapter 3: Little Moments, Big Memories (Scrapbook Collage) ─── */
+.collage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+/* Alternating Hero Card */
+.collage-hero {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-surface-glass);
+  border: 1px solid var(--border-wine);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+}
+
+.collage-hero-img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+.collage-hero-caption-bar {
+  padding: 24px 30px;
+  background: linear-gradient(to top, rgba(14, 5, 9, 0.95), rgba(14, 5, 9, 0.7));
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.collage-hero-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: var(--text-gold);
+}
+
+.collage-hero-sub {
+  font-family: var(--font-romantic);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--rose-pink);
+}
+
+/* Overlapping Polaroid Cluster */
+.polaroid-cluster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  align-items: center;
+}
+
+/* ─── Chapter 4: Our Beautiful Chaos ───────────────────────────────── */
+.chaos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 36px;
+}
+
+.chaos-card {
+  position: relative;
+  background: #fbf7f4;
+  padding: 10px 10px 30px 10px;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.chaos-card:hover {
+  transform: translateY(-8px) rotate(0deg) scale(1.04) !important;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.85), 0 0 20px var(--gold-glow);
+  z-index: 10;
+}
+
+.chaos-img-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #150910;
+}
+
+.chaos-img-wrap.portrait-aspect {
+  aspect-ratio: 4 / 5;
+}
+
+.chaos-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chaos-caption {
+  margin-top: 12px;
+  font-family: var(--font-script);
+  font-size: 1.35rem;
+  color: #2b0d19;
+  text-align: center;
+}
+
+/* ─── Chapter 5: My Favourite Person (Romantic Glow Showcase) ──────── */
+.favourite-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 36px;
+}
+
+.favourite-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(43, 6, 16, 0.75), rgba(14, 5, 9, 0.85));
+  border: 1px solid var(--border-wine);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.favourite-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--rose-pink);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85), var(--shadow-glow);
+}
+
+.favourite-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.favourite-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.favourite-card:hover .favourite-media img {
+  transform: scale(1.06);
+}
+
+.favourite-details {
+  padding: 22px 24px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.favourite-quote {
+  font-family: var(--font-romantic);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--soft-pink);
+  line-height: 1.45;
+}
+
+.favourite-tag {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ─── Responsive Media Queries ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .beginning-row,
+  .beginning-row.reverse {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .beginning-text {
+    padding: 0 10px;
+    text-align: center;
+  }
+  .polaroid-cluster,
+  .his-world-grid,
+  .chaos-grid,
+  .favourite-showcase {
+    gap: 24px;
+  }
+  .polaroid-card {
+    max-width: 340px;
+  }
+}

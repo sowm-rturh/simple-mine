@@ -1,0 +1,141 @@
+/* ==========================================================================
+   THEME.CSS — His World, Our World
+   Palette: Deep Black, Burgundy, Wine Red, Soft Pink, Subtle Gold
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-dark: #070306;
+  --bg-deep: #0e0509;
+  --bg-surface: rgba(22, 8, 16, 0.72);
+  --bg-surface-glass: rgba(28, 10, 20, 0.55);
+  
+  --burgundy: #4a0d1e;
+  --burgundy-dark: #2b0610;
+  --wine-red: #7a152e;
+  --wine-glow: rgba(122, 21, 46, 0.45);
+  
+  --rose-pink: #e8a5b8;
+  --soft-pink: #f7d6e0;
+  --rose-glow: rgba(232, 165, 184, 0.35);
+  
+  --gold: #d4af37;
+  --gold-soft: #f2dc9b;
+  --gold-glow: rgba(212, 175, 55, 0.35);
+  
+  --text-primary: #fcf6f8;
+  --text-secondary: #e2cad2;
+  --text-muted: #a68994;
+  --text-gold: #f4e0a5;
+  
+  --border-subtle: rgba(232, 165, 184, 0.15);
+  --border-gold: rgba(212, 175, 55, 0.3);
+  --border-wine: rgba(122, 21, 46, 0.4);
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-romantic: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-tamil: 'Noto Sans Tamil', -apple-system, sans-serif;
+
+  /* Shadows & Glassmorphism */
+  --glass-blur: blur(18px);
+  --glass-border: 1px solid var(--border-subtle);
+  --shadow-card: 0 16px 36px rgba(0, 0, 0, 0.65), 0 0 24px rgba(122, 21, 46, 0.18);
+  --shadow-glow: 0 0 35px var(--wine-glow), 0 0 15px var(--rose-glow);
+  --shadow-gold: 0 0 30px var(--gold-glow);
+
+  /* Transitions */
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 10%, #1f0612 0%, #0c0408 50%, #060205 100%);
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+body.intro-active {
+  overflow: hidden;
+}
+
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Ambient Radial Glow Spots */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.28;
+}
+
+.ambient-glow-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--burgundy);
+  top: -150px;
+  right: -100px;
+}
+
+.ambient-glow-2 {
+  width: 450px;
+  height: 450px;
+  background: var(--wine-red);
+  bottom: 20%;
+  left: -120px;
+}
+
+/* Canvas for Particles & Floating Hearts */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

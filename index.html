@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#070306" />
+  <meta name="description" content="A cinematic romantic birthday celebration website for my favourite person — His World, Our World." />
+  <title>Happy Birthday My Love — His World, Our World</title>
+
+  <!-- Google Fonts Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/scrapbook.css" />
+  <link rel="stylesheet" href="css/envelope.css" />
+  <link rel="stylesheet" href="css/birthday.css" />
+</head>
+<body class="intro-active">
+
+  <!-- FILM GRAIN TEXTURE OVERLAY -->
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <!-- AMBIENT GLOW LIGHTS -->
+  <div class="ambient-glow ambient-glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-2" aria-hidden="true"></div>
+
+  <!-- FLOATING PARTICLES & HEARTS CANVAS -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- CELEBRATION CONFETTI CANVAS -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- THIN GLOWING SCROLL PROGRESS BAR -->
+  <div id="scroll-progress" role="progressbar" aria-label="Story scroll progress"></div>
+
+  <!-- FLOATING MUSIC PLAYER -->
+  <aside id="music-widget" aria-label="Background music player">
+    <button id="music-toggle-btn" class="music-toggle-btn" aria-label="Play our song">
+      <span class="music-icon" aria-hidden="true">♫</span>
+      <span class="music-label">Our Song</span>
+      <span class="sound-equalizer" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </button>
+    <audio id="bg-music" loop preload="none">
+      <source src="assets/music/our-song.mp3" type="audio/mpeg" />
+    </audio>
+  </aside>
+
+  <!-- =====================================================================
+       CINEMATIC INTRO SCREEN (DARK, KEN BURNS SOLO SLIDESHOW & BIRTHDAY TEXT)
+       ===================================================================== -->
+  <section id="cinematic-intro" role="region" aria-label="Cinematic Birthday Introduction">
+    <div class="intro-slideshow-container" id="intro-slides" aria-hidden="true"></div>
+    <div class="intro-vignette" aria-hidden="true"></div>
+
+    <div class="intro-content">
+      <span class="intro-subtitle" id="intro-subtitle">A Cinematic Birthday Celebration</span>
+      <h1 class="intro-quote-1" id="intro-quote-1">“Before you became my everything… the universe gifted this world with you.”</h1>
+      <h2 class="intro-quote-2" id="intro-quote-2">“Another year older, another year of you being my whole world. Happy Birthday, my love.”</h2>
+      <button id="enter-story-btn" class="enter-story-btn" aria-label="Enter our romantic birthday celebration">
+        Celebrate With Me <span class="btn-heart" aria-hidden="true">♡</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MAIN SLOW-SCROLL STORY CHAPTERS (BIRTHDAY CELEBRATION EDITION)
+       ===================================================================== -->
+  <main id="main-story">
+
+    <!-- ── CHAPTER 1: THE JOURNEY OF YOU (HIS WORLD) ────────────────── -->
+    <section id="chapter-1" class="chapter-section" aria-labelledby="title-ch1">
+      <header class="chapter-header reveal-item">
+        <span class="chapter-tag">Chapter 01</span>
+        <h2 id="title-ch1" class="chapter-title">The Journey of You</h2>
+        <p class="chapter-description">Celebrating every year, every milestone, and the handsome boy who grew into the man of my dreams.</p>
+      </header>
+      <div class="his-world-grid" id="his-world-grid"></div>
+    </section>
+
+    <!-- ── CHAPTER 2: THE DAY YOU BECAME MINE ───────────────────────── -->
+    <section id="chapter-2" class="chapter-section" aria-labelledby="title-ch2">
+      <header class="chapter-header reveal-item">
+        <span class="chapter-tag">Chapter 02</span>
+        <h2 id="title-ch2" class="chapter-title">The Day You Became Mine</h2>
+        <p class="chapter-description">Of all the birthdays in your life, the greatest gift fate ever gave me was the day you walked into my world.</p>
+      </header>
+      <div class="beginning-flow" id="beginning-flow"></div>
+    </section>
+
+    <!-- ── CHAPTER 3: ANOTHER YEAR OF MEMORIES ──────────────────────── -->
+    <section id="chapter-3" class="chapter-section" aria-labelledby="title-ch3">
+      <header class="chapter-header reveal-item">
+        <span class="chapter-tag">Chapter 03</span>
+        <h2 id="title-ch3" class="chapter-title">Another Year of Memories</h2>
+        <p class="chapter-description">Counting our memories like stars in the sky. Every adventure with you is a gift I cherish.</p>
+      </header>
+      <div class="collage-container">
+        <!-- Hero Feature 1: Boating -->
+        <div class="collage-hero reveal-item" id="collage-hero-1"></div>
+        <!-- Overlapping Scrapbook Polaroids 1 -->
+        <div class="polaroid-cluster" id="polaroid-cluster-1"></div>
+        <!-- Hero Feature 2: Tea Hills -->
+        <div class="collage-hero reveal-item" id="collage-hero-2"></div>
+        <!-- Overlapping Scrapbook Polaroids 2 -->
+        <div class="polaroid-cluster" id="polaroid-cluster-2"></div>
+      </div>
+    </section>
+
+    <!-- ── CHAPTER 4: YOUR SMILE, MY WORLD ─────────────────────────── -->
+    <section id="chapter-4" class="chapter-section" aria-labelledby="title-ch4">
+      <header class="chapter-header reveal-item">
+        <span class="chapter-tag">Chapter 04</span>
+        <h2 id="title-ch4" class="chapter-title">Your Smile, My World</h2>
+        <p class="chapter-description">To the person whose laughter lights up my darkest days. Happy Birthday to my favourite chaotic soul!</p>
+      </header>
+      <div class="chaos-grid" id="chaos-grid"></div>
+    </section>
+
+    <!-- ── CHAPTER 5: MAKE A WISH, BIRTHDAY BOY (INTERACTIVE CAKE) ───── -->
+    <section id="chapter-5" class="chapter-section" aria-labelledby="title-ch5">
+      <header class="chapter-header reveal-item">
+        <span class="birthday-badge">🎂 Birthday Special</span>
+        <h2 id="title-ch5" class="chapter-title">Make a Wish, Birthday Boy</h2>
+        <p class="chapter-description">Blow out the candles, make a silent wish, and let the universe know how deeply loved you are.</p>
+      </header>
+
+      <div class="birthday-celebration-container">
+        <div class="birthday-split-grid">
+          
+          <!-- Real Memory Cake Photo Card -->
+          <div class="birthday-photo-memory reveal-item">
+            <div class="birthday-photo-wrap" id="birthday-real-photo-wrap"></div>
+            <div class="birthday-photo-caption">
+              <h4 id="birthday-real-photo-title">Our Cake Cutting Memory</h4>
+              <p id="birthday-real-photo-caption">Chocolate cake, glowing candle, and wishing for your happiness forever.</p>
+            </div>
+          </div>
+
+          <!-- Interactive 3D Cake & Candle Blow-Out -->
+          <div class="interactive-cake-stage reveal-item">
+            <div class="cake-stand">
+              <!-- Candles -->
+              <div class="candles-cluster">
+                <div class="candle" aria-label="First Birthday Candle">
+                  <div class="candle-wick"></div>
+                  <div class="flame"></div>
+                  <div class="smoke"></div>
+                </div>
+                <div class="candle" aria-label="Second Birthday Candle">
+                  <div class="candle-wick"></div>
+                  <div class="flame"></div>
+                  <div class="smoke"></div>
+                </div>
+                <div class="candle" aria-label="Third Birthday Candle">
+                  <div class="candle-wick"></div>
+                  <div class="flame"></div>
+                  <div class="smoke"></div>
+                </div>
+              </div>
+
+              <!-- Top Tier -->
+              <div class="cake-top-tier">
+                <div class="frosting-drip drip-1"></div>
+                <div class="frosting-drip drip-2"></div>
+                <div class="frosting-drip drip-3"></div>
+                <div class="frosting-drip drip-4"></div>
+              </div>
+
+              <!-- Bottom Tier -->
+              <div class="cake-bottom-tier">
+                <div class="frosting-drip drip-1"></div>
+                <div class="frosting-drip drip-2"></div>
+                <div class="frosting-drip drip-3"></div>
+              </div>
+
+              <!-- Golden Stand Plate -->
+              <div class="plate"></div>
+            </div>
+
+            <!-- Blow Candles Button -->
+            <button id="blow-candles-btn" class="blow-candles-btn" aria-label="Blow out birthday candles and make a wish">
+              <span class="btn-sparkle" aria-hidden="true">✨</span>
+              Blow Out Candles &amp; Make a Wish 🎂
+            </button>
+
+            <!-- Revealed Birthday Wish Card -->
+            <article class="birthday-wish-card" id="birthday-wish-card" aria-live="polite">
+              <h3 class="wish-title" id="wish-title">My Birthday Wish For You ✨</h3>
+              <p class="wish-message" id="wish-message"></p>
+              <p class="wish-subtext" id="wish-subtext"></p>
+            </article>
+
+          </div>
+
+        </div>
+
+        <!-- Romantic Couple Spotlight Cards -->
+        <div class="favourite-showcase" id="favourite-showcase"></div>
+      </div>
+    </section>
+
+    <!-- ── CHAPTER 6: A BIRTHDAY LOVE LETTER ────────────────────────── -->
+    <section id="chapter-6" class="chapter-section" aria-labelledby="title-ch6">
+      <header class="chapter-header reveal-item">
+        <span class="chapter-tag">Chapter 06</span>
+        <h2 id="title-ch6" class="chapter-title">A Birthday Love Letter</h2>
+        <p class="chapter-description">Written straight from my heart on your special day. Click the golden wax seal to unroll my letter.</p>
+      </header>
+
+      <div class="envelope-wrapper" id="envelope-wrapper">
+        <div class="envelope-box" id="envelope-box">
+          <div class="envelope-flap"></div>
+          <button id="wax-seal" class="wax-seal" aria-label="Open Birthday Love Letter">
+            <span class="wax-seal-heart" aria-hidden="true">♥</span>
+          </button>
+          <span class="envelope-prompt-text">Tap the golden seal to open your birthday letter...</span>
+        </div>
+
+        <!-- Handwritten Love Letter Sheet -->
+        <article class="letter-parchment" id="letter-parchment" aria-live="polite">
+          <header class="letter-header">
+            <h3 class="letter-salutation">Happy Birthday, My Dearest,</h3>
+            <span class="letter-date">A Birthday Promise Written in Love</span>
+          </header>
+          <div class="letter-body" id="letter-body-content"></div>
+          <footer class="letter-signature">
+            <p class="letter-sig-text">— எப்போதும் உன்னை நேசிக்கும் உன் பெண் ♡</p>
+          </footer>
+          <button id="close-letter-btn" class="letter-close-btn" aria-label="Fold letter back into envelope">Fold Letter ♡</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── FINAL CHAPTER: FOREVER MY BIRTHDAY BOY ───────────────────── -->
+    <section id="final-chapter" class="chapter-section" aria-labelledby="title-final">
+      <header class="chapter-header reveal-item">
+        <span class="birthday-badge">Final Celebration</span>
+        <h2 id="title-final" class="chapter-title">Forever My Birthday Boy</h2>
+      </header>
+
+      <div class="final-hero-wrapper reveal-item">
+        <div class="final-hero-img-wrap" id="final-hero-img-wrap">
+          <img src="assets/curated_story/final_forever_climax.jpg" alt="Our most beautiful memory together" loading="lazy" />
+          <div class="final-hero-glow-border" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="final-message-container reveal-item">
+        <p class="final-quote">“Out of all the people in this world, my heart will always choose you. Happy Birthday, my love.”</p>
+        <div class="final-heart-divider" aria-hidden="true">
+          <span>♡</span>
+        </div>
+        <p class="final-tagline">“Today is your day, but you are my everyday. Happy Birthday! 🎂❤️”</p>
+        <p class="final-closing-note">Made with all my love on your birthday • Forever &amp; Always</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       FULL-SCREEN LIGHTBOX MODAL
+       ===================================================================== -->
+  <dialog id="photo-lightbox" aria-modal="true" aria-label="Full-screen photo viewer">
+    <button id="lightbox-close-btn" class="lightbox-close-btn" aria-label="Close photo viewer">✕</button>
+    <button id="lightbox-prev-btn" class="lightbox-nav-btn lightbox-prev-btn" aria-label="Previous photo">‹</button>
+    <button id="lightbox-next-btn" class="lightbox-nav-btn lightbox-next-btn" aria-label="Next photo">›</button>
+    <div class="lightbox-content-box">
+      <div class="lightbox-image-wrap">
+        <img id="lightbox-img" src="" alt="Full-screen memory" />
+      </div>
+      <p id="lightbox-caption" class="lightbox-caption-text"></p>
+    </div>
+  </dialog>
+
+  <!-- Scripts -->
+  <script src="js/story-data.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/audio-player.js"></script>
+  <script src="js/cinematic-intro.js"></script>
+  <script src="js/birthday-cake.js"></script>
+  <script src="js/envelope.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

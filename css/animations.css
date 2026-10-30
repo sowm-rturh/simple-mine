@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS CSS — All keyframes & scroll-triggered
+═══════════════════════════════════════════════════ */
+
+/* ── FADE IN SCROLL ────────────────────────────── */
+.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-silk), transform 0.8s var(--ease-silk);
+}
+.fade-in-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── ENVELOPE INTRO FADE ───────────────────────── */
+.envelope-pre-text {
+  font-family: var(--font-script);
+  font-size: clamp(16px, 4vw, 24px);
+  color: rgba(232,160,180,0.9);
+  text-align: center;
+  max-width: 380px;
+  line-height: 1.5;
+  animation: fadeSlideUp 1.8s var(--ease-silk) 0.5s both;
+}
+
+.envelope-sub-text {
+  font-family: var(--font-serif);
+  font-size: clamp(13px, 3vw, 16px);
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  letter-spacing: 0.1em;
+  animation: fadeSlideUp 1.8s var(--ease-silk) 1.5s both;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ENVELOPE ANIMATIONS ───────────────────────── */
+@keyframes envelopeGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(107,26,46,0.4), 0 0 60px rgba(107,26,46,0.1); }
+  50%       { box-shadow: 0 0 40px rgba(107,26,46,0.7), 0 0 100px rgba(107,26,46,0.2); }
+}
+
+@keyframes waxPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(139,34,82,0.5); }
+  50%       { transform: scale(1.04); box-shadow: 0 0 25px rgba(139,34,82,0.8); }
+}
+
+@keyframes envelopeFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.envelope-float { animation: envelopeFloat 3s ease-in-out infinite; }
+
+/* Flap open */
+@keyframes flapOpen {
+  0%   { transform: rotateX(0deg); }
+  100% { transform: rotateX(-180deg); }
+}
+
+/* Letter rise */
+@keyframes letterRise {
+  0%   { transform: translateY(0); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: translateY(-70px); opacity: 1; }
+}
+
+/* Screen transition */
+@keyframes screenFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── CINEMATIC TEXT ────────────────────────────── */
+.ct-line {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 6vw, 52px);
+  font-weight: 400;
+  color: var(--cream);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s var(--ease-silk), transform 1.2s var(--ease-silk);
+  line-height: 1.3;
+}
+
+.ct-line.visible { opacity: 1; transform: translateY(0); }
+.ct-italic { font-style: italic; color: var(--pink-soft); }
+
+/* ── HEARTBEAT ─────────────────────────────────── */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.12); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.06); }
+  70%       { transform: scale(1); }
+}
+.heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+
+/* ── GLOW PULSE ────────────────────────────────── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+/* ── SHIMMER ───────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── COUNTER COUNT-UP ──────────────────────────── */
+@keyframes countUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.ci-num { animation: countUp 0.8s var(--ease-spring) both; }
+
+/* ── POLAROID HOVER ────────────────────────────── */
+@keyframes polaroidWiggle {
+  0%  { transform: rotate(var(--rot, -2deg)) scale(1); }
+  25% { transform: rotate(calc(var(--rot, -2deg) + 2deg)) scale(1.02); }
+  75% { transform: rotate(calc(var(--rot, -2deg) - 2deg)) scale(1.02); }
+  100%{ transform: rotate(var(--rot, -2deg)) scale(1); }
+}
+
+/* ── TIMELINE DOT PULSE ────────────────────────── */
+@keyframes dotPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(139,34,82,0.7),
+                0 0 0 0 rgba(139,34,82,0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(139,34,82,0),
+                0 0 0 12px rgba(139,34,82,0);
+  }
+}
+
+/* ── VIDEO CARD HOVER ──────────────────────────── */
+@keyframes videoCardShine {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ── FLOATING NOTE DRIFT ───────────────────────── */
+@keyframes noteDrift {
+  0%, 100% { transform: rotate(var(--rot, -2deg)) translateY(0); }
+  50%       { transform: rotate(var(--rot, -2deg)) translateY(-8px); }
+}
+
+/* ── BIG NUMBER REVEAL ─────────────────────────── */
+@keyframes bigNumReveal {
+  0%   { opacity: 0; transform: scale(0.8) translateY(30px); filter: blur(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+/* ── LETTER LINE REVEAL ────────────────────────── */
+@keyframes lineReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HEART BURST ───────────────────────────────── */
+@keyframes burstHeart {
+  0%   { opacity: 1; transform: translate(var(--bx,0), var(--by,0)) scale(0.5); }
+  60%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(var(--bx,0) * 4), calc(var(--by,0) * 4)) scale(1.8) rotate(45deg); }
+}
+
+/* ── CONFETTI ──────────────────────────────────── */
+@keyframes confettiFall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── MEMORY WALL ───────────────────────────────── */
+@keyframes wallPhotoFadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── FINAL GLOW HEART ──────────────────────────── */
+@keyframes finalHeartGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(139,34,82,0.6),
+                 0 0 60px rgba(139,34,82,0.3);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(139,34,82,1),
+                 0 0 100px rgba(139,34,82,0.5),
+                 0 0 160px rgba(107,26,46,0.3);
+  }
+}
+
+/* ── CHAPTER TITLE REVEAL ──────────────────────── */
+@keyframes chTitleReveal {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── PHOTO ZOOM HOVER ──────────────────────────── */
+.photo-mosaic img {
+  transition: transform 0.5s var(--ease-silk), box-shadow 0.5s var(--ease-silk);
+}
+.photo-mosaic img:hover {
+  transform: scale(1.06) !important;
+  z-index: 5;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+}
+
+/* ── SCROLL REVEAL DELAYS ──────────────────────── */
+.fade-in-scroll[data-delay="0"]    { transition-delay: 0ms; }
+.fade-in-scroll[data-delay="100"]  { transition-delay: 100ms; }
+.fade-in-scroll[data-delay="200"]  { transition-delay: 200ms; }
+.fade-in-scroll[data-delay="300"]  { transition-delay: 300ms; }
+.fade-in-scroll[data-delay="400"]  { transition-delay: 400ms; }
+.fade-in-scroll[data-delay="500"]  { transition-delay: 500ms; }
+.fade-in-scroll[data-delay="600"]  { transition-delay: 600ms; }
+.fade-in-scroll[data-delay="750"]  { transition-delay: 750ms; }
+.fade-in-scroll[data-delay="800"]  { transition-delay: 800ms; }
+.fade-in-scroll[data-delay="900"]  { transition-delay: 900ms; }
+.fade-in-scroll[data-delay="1000"] { transition-delay: 1000ms; }
+.fade-in-scroll[data-delay="1050"] { transition-delay: 1050ms; }
+.fade-in-scroll[data-delay="1200"] { transition-delay: 1200ms; }
+.fade-in-scroll[data-delay="1500"] { transition-delay: 1500ms; }
+.fade-in-scroll[data-delay="1800"] { transition-delay: 1800ms; }
+.fade-in-scroll[data-delay="2100"] { transition-delay: 2100ms; }
